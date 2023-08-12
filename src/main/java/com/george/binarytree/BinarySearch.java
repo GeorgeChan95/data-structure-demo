@@ -1,5 +1,8 @@
 package com.george.binarytree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * <p>
  *     二分树
@@ -32,6 +35,34 @@ public class BinarySearch {
 //        midTraver(root);
         // 后序遍历
         afterTraver(root);
+
+        // 广度优先遍历
+        levelOrderTraveral(root);
+    }
+
+    /**
+     * 广度优先遍历
+     * 也叫层序遍历，顾名思义，就是二叉树按照从根节点到叶子节点的层次关系，一层一层横向遍历各个节点。
+     * @param root
+     */
+    private static void levelOrderTraveral(TreeNode root) {
+        // 声明队列
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            // 头部队列出列
+            TreeNode treeNode = queue.poll();
+            System.out.println(treeNode.getData());
+            // 左子节点入队
+            if (treeNode.getLeftChild() != null) {
+                queue.offer(treeNode.getLeftChild());
+            }
+            // 右子节点入队
+            if (treeNode.getRightChild() != null) {
+                queue.offer(treeNode.getRightChild());
+            }
+        }
     }
 
     /**
